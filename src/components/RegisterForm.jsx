@@ -5,7 +5,7 @@ const RegisterForm = () => {
         <>
             <form
                 action=''
-                className='flex flex-col space-y-4 absolute w-[19rem] right-48'
+                className='flex flex-col space-y-4 absolute w-[19rem] right-full'
             >
                 <input
                     type='text'
