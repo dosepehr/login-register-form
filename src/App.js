@@ -2,6 +2,7 @@ import { MainForm } from './components';
 import { useState } from 'react';
 import { mainContext } from './context';
 function App() {
+    // ! checks which form is requested by the user,login or register
     const [currentForm, setCurrentForm] = useState('login');
     return (
         <mainContext.Provider

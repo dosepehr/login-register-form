@@ -1,10 +1,11 @@
 import { useContext } from 'react';
 import { mainContext } from '../context';
 const LoginForm = () => {
-    const { currentForm, setCurrentForm } = useContext(mainContext);
+    const { currentForm } = useContext(mainContext);
 
     return (
         <>
+            {/* if user requested for login form ,it will slide from right */}
             <form
                 action=''
                 className={`flex flex-col space-y-4 absolute w-[19rem]

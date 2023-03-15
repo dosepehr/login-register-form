@@ -1,9 +1,10 @@
 import { useContext } from 'react';
 import { mainContext } from '../context';
 const RegisterForm = () => {
-    const { currentForm, setCurrentForm } = useContext(mainContext);
+    const { currentForm } = useContext(mainContext);
     return (
         <>
+            {/* if user requested for register form ,it will slide from left */}
             <form
                 action=''
                 className={`flex flex-col space-y-4 absolute w-[19rem]
