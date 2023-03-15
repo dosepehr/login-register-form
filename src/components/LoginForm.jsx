@@ -1,8 +1,7 @@
-
 const LoginForm = () => {
     return (
         <>
-            <form action='' className='flex flex-col space-y-4'>
+            <form action='' className='flex flex-col space-y-4 absolute w-[19rem]'>
                 <input
                     type='text'
                     placeholder='username'

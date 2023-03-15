@@ -3,7 +3,10 @@ import React from 'react';
 const RegisterForm = () => {
     return (
         <>
-            <form action='' className='flex flex-col space-y-4'>
+            <form
+                action=''
+                className='flex flex-col space-y-4 absolute w-[19rem] right-48'
+            >
                 <input
                     type='text'
                     placeholder='username'
