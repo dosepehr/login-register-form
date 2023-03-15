@@ -1,6 +1,7 @@
-import React from 'react';
-
+import { useContext } from 'react';
+import { mainContext } from '../context';
 const RegisterForm = () => {
+    const { currentForm, setCurrentForm } = useContext(mainContext);
     return (
         <>
             <form

@@ -1,6 +1,8 @@
-import React from 'react';
+import { useContext } from 'react';
+import { mainContext } from '../context';
 
 const FormButtons = () => {
+    const { currentForm, setCurrentForm } = useContext(mainContext);
     return (
         <>
             <div class='flex  my-9 items-center justify-center rounded-3xl shadow-lg shadow-[#ff4d4d4d]'>

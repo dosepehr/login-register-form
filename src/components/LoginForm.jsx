@@ -1,7 +1,13 @@
+import { useContext } from 'react';
+import { mainContext } from '../context';
 const LoginForm = () => {
+    const { currentForm, setCurrentForm } = useContext(mainContext);
     return (
         <>
-            <form action='' className='flex flex-col space-y-4 absolute w-[19rem]'>
+            <form
+                action=''
+                className='flex flex-col space-y-4 absolute w-[19rem]'
+            >
                 <input
                     type='text'
                     placeholder='username'
