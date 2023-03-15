@@ -1,4 +1,4 @@
-import { LoginForm } from './';
+import { LoginForm, RegisterForm } from './';
 
 const ManForm = () => {
     return (
@@ -14,6 +14,7 @@ const ManForm = () => {
                     </button>
                 </div>
                 <LoginForm />
+                <RegisterForm />
             </div>
         </div>
     );
