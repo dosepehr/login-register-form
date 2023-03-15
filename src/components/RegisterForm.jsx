@@ -4,12 +4,12 @@ const RegisterForm = () => {
     const { currentForm } = useContext(mainContext);
     return (
         <>
-            {/* if user requested for register form ,it will slide from left */}
+            {/* if user requested for register form ,it will slide from right */}
             <form
                 action=''
                 className={`flex flex-col space-y-4 absolute w-[19rem]
                 duration-300
-                ${currentForm === 'register' ? 'right-9' : 'right-full'}
+                ${currentForm === 'register' ? 'right-full' : 'right-9'}
                 `}
             >
                 <input

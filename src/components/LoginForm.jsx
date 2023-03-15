@@ -5,12 +5,12 @@ const LoginForm = () => {
 
     return (
         <>
-            {/* if user requested for login form ,it will slide from right */}
+            {/* if user requested for login form ,it will slide from left */}
             <form
                 action=''
                 className={`flex flex-col space-y-4 absolute w-[19rem]
                 duration-300
-                ${currentForm === 'login' ? 'left-9' : 'left-full'}
+                ${currentForm === 'login' ? 'left-full' : 'left-9'}
                 `}
             >
                 <input
