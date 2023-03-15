@@ -6,22 +6,25 @@ const RegisterForm = () => {
         <>
             <form
                 action=''
-                className='flex flex-col space-y-4 absolute w-[19rem] right-full'
+                className={`flex flex-col space-y-4 absolute w-[19rem]
+                duration-300
+                ${currentForm === 'register' ? 'right-9' : 'right-full'}
+                `}
             >
                 <input
                     type='text'
                     placeholder='username'
-                    class='p-2 border border-[#777] rounded-3xl'
+                    className='p-2 border border-[#777] rounded-3xl'
                 />
                 <input
                     type='email'
                     placeholder='email'
-                    class='p-2 border border-[#777] rounded-3xl'
+                    className='p-2 border border-[#777] rounded-3xl'
                 />
                 <input
                     type='password'
                     placeholder='password'
-                    class='p-2 border border-[#777] rounded-3xl'
+                    className='p-2 border border-[#777] rounded-3xl'
                 />
                 <input
                     type='submit'
