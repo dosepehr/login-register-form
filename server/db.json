@@ -2,19 +2,19 @@
     "users": [
         {
             "id": 1,
-            "name": "John",
+            "username": "John",
             "password": "123456",
             "email": "John@gmail.com"
         },
         {
             "id": 2,
-            "name": "Peter",
+            "username": "Peter",
             "password": "pet-123",
             "email": "Peter@gmail.com"
         },
         {
             "id": 3,
-            "name": "Amy",
+            "username": "Amy",
             "password": "AmyHerself",
             "email": "Amy@gmail.com"
         }
