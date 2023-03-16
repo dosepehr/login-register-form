@@ -1,11 +1,29 @@
 import { useContext } from 'react';
 import { mainContext } from '../context';
+import { registerUser } from '../services/fetchData';
 const RegisterForm = () => {
-    const { currentForm } = useContext(mainContext);
+    const { currentForm, userInfo, setUserInfo } = useContext(mainContext);
+
+    // ! getting new user info
+    const setUserInfoHandler = (e) => {
+        setUserInfo({ ...userInfo, [e.target.name]: e.target.value });
+    };
+    const createUser = async (e) => {
+        e.preventDefault();
+        try {
+            console.log(userInfo);
+            const { status } = await registerUser(userInfo);
+            console.log(status);
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
     return (
         <>
             {/* if user requested for register form ,it will slide from right */}
             <form
+                onSubmit={(e) => createUser(e)}
                 action=''
                 className={`flex flex-col space-y-4 absolute w-[19rem]
                 duration-300
@@ -13,16 +31,22 @@ const RegisterForm = () => {
                 `}
             >
                 <input
+                    name='username'
+                    onChange={setUserInfoHandler}
                     type='text'
                     placeholder='username'
                     className='p-2 border border-[#777] rounded-3xl'
                 />
                 <input
+                    name='email'
+                    onChange={setUserInfoHandler}
                     type='email'
                     placeholder='email'
                     className='p-2 border border-[#777] rounded-3xl'
                 />
                 <input
+                    name='password'
+                    onChange={setUserInfoHandler}
                     type='password'
                     placeholder='password'
                     className='p-2 border border-[#777] rounded-3xl'
