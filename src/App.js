@@ -1,9 +1,23 @@
+import { useState, useEffect } from 'react';
 import { MainForm } from './components';
-import { useState } from 'react';
 import { mainContext } from './context';
+import { getUsers } from './services/fetchData';
 function App() {
-    // ! checks which form is requested by the user,login or register
     const [currentForm, setCurrentForm] = useState('login');
+    const [users, setUsers] = useState([]);
+    // ! getting users from server
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const { data: usersData } = await getUsers();
+                setUsers(usersData);
+            } catch (err) {
+                console.log(err);
+            }
+        };
+        fetchData();
+    }, []);
+    // ! checks which form is requested by the user,login or register
     return (
         <mainContext.Provider
             value={{
