@@ -6,14 +6,33 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { RegisterSchema } from '../validation/userSchema';
 const RegisterForm = () => {
     const navigate = useNavigate();
-    const { currentForm, setUser } = useContext(mainContext);
+    const { currentForm, setUser, errMessage, setErrMessage, users } =
+        useContext(mainContext);
 
     // ! getting new user info
     const createUser = async (values) => {
         try {
-            await registerUser(values);
-            setUser(values);
-            navigate('/main');
+            const isUsernameTaken = users.some(
+                (user) =>
+                    user.username.toLowerCase() ===
+                    values.username.toLowerCase()
+            );
+            const isEmailTaken = users.some(
+                (user) =>
+                    user.email.toLowerCase() === values.email.toLowerCase()
+            );
+            if (isUsernameTaken) {
+                setErrMessage(
+                    'this username is taken,please choose another name'
+                );
+            } else if (isEmailTaken) {
+                setErrMessage('this email is connected to another account');
+            } else {
+                await registerUser(values);
+                setUser(values);
+                navigate('/main');
+                setErrMessage('');
+            }
         } catch (err) {
             console.log(err);
         }
@@ -66,6 +85,9 @@ const RegisterForm = () => {
                     <span className='text-red-500'>
                         <ErrorMessage name='password' />
                     </span>
+                    {errMessage && (
+                        <span className='text-red-500'>{errMessage}</span>
+                    )}
                     <button
                         type='submit'
                         className='text-[#333] text-lg rounded-3xl p-2 bg-gradient-to-r from-[#f3446a] to-[#ff6464]'

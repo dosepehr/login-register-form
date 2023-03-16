@@ -2,11 +2,13 @@ import { useContext } from 'react';
 import { mainContext } from '../context';
 
 const FormButtons = () => {
-    const { currentForm, setCurrentForm } = useContext(mainContext);
+    const { currentForm, setCurrentForm, setErrMessage } =
+        useContext(mainContext);
     const changeForm = () => {
         currentForm === 'login'
             ? setCurrentForm('register')
             : setCurrentForm('login');
+        setErrMessage('');
     };
     return (
         <>
