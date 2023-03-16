@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
-import { MainForm } from './components';
 import { mainContext } from './context';
 import { getUsers } from './services/fetchData';
+import { routes } from './routes';
+import { useRoutes } from 'react-router-dom';
 function App() {
+    const router = useRoutes(routes);
     // * states
     const [currentForm, setCurrentForm] = useState('login');
     const [users, setUsers] = useState([]);
@@ -31,10 +33,7 @@ function App() {
                 users,
             }}
         >
-                <MainForm
-                    currentForm={currentForm}
-                    setCurrentForm={setCurrentForm}
-                />
+            {router}
         </mainContext.Provider>
     );
 }
