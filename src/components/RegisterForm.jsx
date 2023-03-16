@@ -3,7 +3,7 @@ import { mainContext } from '../context';
 import { registerUser } from '../services/fetchData';
 import { useNavigate } from 'react-router-dom';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { userSchema } from '../validation/userSchema';
+import { RegisterSchema } from '../validation/userSchema';
 const RegisterForm = () => {
     const navigate = useNavigate();
     const { currentForm, setUser } = useContext(mainContext);
@@ -28,7 +28,7 @@ const RegisterForm = () => {
                     email: '',
                     password: '',
                 }}
-                validationSchema={userSchema}
+                validationSchema={RegisterSchema}
                 onSubmit={(values) => {
                     createUser(values);
                 }}
