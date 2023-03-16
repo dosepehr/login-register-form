@@ -15,9 +15,15 @@ export const registerUser = (newUserData) => {
 };
 
 export const getUserDataFromGithub = () => {
-    return axios.get('http://localhost:4000/getUserData', {
+    const url = 'http://localhost:4000/getUserData';
+    return axios.get(url, {
         headers: {
             Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
         },
     });
+};
+
+export const getAccessToken = (codeParam) => {
+    const url = `http://localhost:4000/getAccessToken?code=${codeParam}`;
+    return axios.get(url);
 };
