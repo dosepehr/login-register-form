@@ -1,9 +1,22 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { mainContext } from '../context';
 const MainPage = () => {
-    const { user, setUser } = useContext(mainContext);
+    const { user, setUser, users } = useContext(mainContext);
+    useEffect(() => {
+        if (localStorage.getItem('userId')) {
+            const loggedInUser = users.filter(
+                (user) => user.id == localStorage.getItem('userId')
+            );
+            // if (loggedInUser.length > 0) {
+            //     console.log(loggedInUser);
+            // }
+            loggedInUser.length > 0 && setUser(loggedInUser[0]);
+            // setUser(loggedInUser[0]);
+        }
+    }, [users]);
     const logOutHandler = () => {
         setUser({});
+        localStorage.removeItem('userId');
     };
     return (
         <div>

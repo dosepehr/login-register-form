@@ -3,7 +3,7 @@ import { MainForm, MainPage } from '../pages';
 export const routes = [
     {
         path: '/',
-        element: <Navigate to='/login-register' />,
+        element: <Navigate to='/main' />,
     },
     {
         path: '/login-register',

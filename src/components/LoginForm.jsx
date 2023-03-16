@@ -20,6 +20,8 @@ const LoginForm = () => {
                 if (requestedUser.password === values.password) {
                     navigate('/main');
                     setUser(requestedUser);
+                    localStorage.setItem('userId', requestedUser.id);
+
                     setErrMessage('');
                 } else {
                     setErrMessage('wrong pass or username');
