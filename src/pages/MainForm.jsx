@@ -1,4 +1,4 @@
-import { LoginForm, RegisterForm, FormButtons } from './';
+import { LoginForm, RegisterForm, FormButtons } from '../components';
 
 const ManForm = () => {
     return (

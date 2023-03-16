@@ -1,5 +1,5 @@
 import { Navigate } from 'react-router-dom';
-import { MainForm } from '../components';
+import { MainForm } from '../pages';
 export const routes = [
     {
         path: '/',
@@ -9,4 +9,5 @@ export const routes = [
         path: '/login-register',
         element: <MainForm />,
     },
+
 ];
