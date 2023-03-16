@@ -3,8 +3,10 @@ import { MainForm } from './components';
 import { mainContext } from './context';
 import { getUsers } from './services/fetchData';
 function App() {
+    // * states
     const [currentForm, setCurrentForm] = useState('login');
     const [users, setUsers] = useState([]);
+    const [userInfo, setUserInfo] = useState({});
     // ! getting users from server
     useEffect(() => {
         const fetchData = async () => {
@@ -23,6 +25,10 @@ function App() {
             value={{
                 currentForm,
                 setCurrentForm,
+                userInfo,
+                setUserInfo,
+                setUsers,
+                users,
             }}
         >
             <div className='app absolute bg-center bg-cover h-full w-full flex items-center justify-center'>
