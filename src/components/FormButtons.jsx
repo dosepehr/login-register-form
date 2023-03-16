@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { mainContext } from '../context';
-
+import GithubLoginButton from './GithubLoginButton';
 const FormButtons = () => {
     const { currentForm, setCurrentForm, setErrMessage } =
         useContext(mainContext);
@@ -35,6 +35,7 @@ const FormButtons = () => {
                     </button>
                 </div>
             </div>
+            <GithubLoginButton />
         </>
     );
 };
