@@ -1,8 +1,11 @@
 import { useContext } from 'react';
 import { mainContext } from '../context';
 import { registerUser } from '../services/fetchData';
+import { useNavigate } from 'react-router-dom';
 const RegisterForm = () => {
-    const { currentForm, userInfo, setUserInfo } = useContext(mainContext);
+    const navigate = useNavigate();
+    const { currentForm, userInfo, setUserInfo, setUser } =
+        useContext(mainContext);
 
     // ! getting new user info
     const setUserInfoHandler = (e) => {
@@ -11,9 +14,9 @@ const RegisterForm = () => {
     const createUser = async (e) => {
         e.preventDefault();
         try {
-            console.log(userInfo);
-            const { status } = await registerUser(userInfo);
-            console.log(status);
+            await registerUser(userInfo);
+            setUser(userInfo);
+            navigate('/main');
         } catch (err) {
             console.log(err);
         }
