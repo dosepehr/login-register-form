@@ -8,7 +8,6 @@ function App() {
     // * states
     const [currentForm, setCurrentForm] = useState('login');
     const [users, setUsers] = useState([]);
-    const [userInfo, setUserInfo] = useState({});
     const [user, setUser] = useState({});
     const [errMessage, setErrMessage] = useState('');
     // ! getting users from server
@@ -29,8 +28,6 @@ function App() {
             value={{
                 currentForm,
                 setCurrentForm,
-                userInfo,
-                setUserInfo,
                 setUsers,
                 users,
                 user,
