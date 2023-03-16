@@ -23,8 +23,8 @@ server.get('/getAccessToken', async function (req, res) {
         }
     );
     const data = await response.json();
-    console.log(data);
-    // const datas = await response.json(data);
+    res.send(data);
+
 });
 
 server.get('/getUserData', async function (req, res) {
@@ -35,7 +35,7 @@ server.get('/getUserData', async function (req, res) {
         },
     });
     const data = await response.json();
-    console.log(data);
+    res.send(data);
 });
 
 server.listen(4000, () => {

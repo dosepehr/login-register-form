@@ -4,7 +4,19 @@ const GithubLoginButton = () => {
     const location = useLocation();
     useEffect(() => {
         const codeParam = location.search.slice(6);
-        console.log(codeParam);
+        if (codeParam && localStorage.getItem('accessToken') === null) {
+            const getAccessToken = async () => {
+                const res = await fetch(
+                    `http://localhost:4000/getAccessToken?code=${codeParam}`
+                );
+                const data = await res.json();
+                console.log(data);
+                if (data.access_token) {
+                    localStorage.setItem('accessToken', data.access_token);
+                }
+            };
+            getAccessToken();
+        }
     }, []);
     const CLIENT_ID = 'e197d9e5999efbb20ba4';
     const loginWithGithub = () => {
