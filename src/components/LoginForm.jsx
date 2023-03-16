@@ -5,7 +5,8 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { LoginSchema } from '../validation/userSchema';
 const LoginForm = () => {
     const navigate = useNavigate();
-    const { currentForm, users, setUser } = useContext(mainContext);
+    const { currentForm, users, setUser, errMessage, setErrMessage } =
+        useContext(mainContext);
     // ! getting user info
     const getUser = async (values) => {
         try {
@@ -19,11 +20,12 @@ const LoginForm = () => {
                 if (requestedUser.password === values.password) {
                     navigate('/main');
                     setUser(requestedUser);
+                    setErrMessage('');
                 } else {
-                    console.log('wrong pass or username');
+                    setErrMessage('wrong pass or username');
                 }
             } else {
-                console.log('wrong pass or username');
+                setErrMessage('wrong pass or username');
             }
         } catch (err) {
             console.log(err);
@@ -67,6 +69,9 @@ const LoginForm = () => {
                     <span className='text-red-500'>
                         <ErrorMessage name='password' />
                     </span>
+                    {errMessage && (
+                        <span className='text-red-500'>{errMessage}</span>
+                    )}
                     <button
                         type='submit'
                         className='text-[#333] text-lg rounded-3xl p-2 bg-gradient-to-r from-[#f3446a] to-[#ff6464]'

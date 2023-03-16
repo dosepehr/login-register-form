@@ -10,6 +10,7 @@ function App() {
     const [users, setUsers] = useState([]);
     const [userInfo, setUserInfo] = useState({});
     const [user, setUser] = useState({});
+    const [errMessage, setErrMessage] = useState('');
     // ! getting users from server
     useEffect(() => {
         const fetchData = async () => {
@@ -34,6 +35,8 @@ function App() {
                 users,
                 user,
                 setUser,
+                errMessage,
+                setErrMessage,
             }}
         >
             {router}
