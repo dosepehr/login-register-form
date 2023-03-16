@@ -7,4 +7,6 @@ export const mainContext = createContext({
     setUserInfo: () => {},
     users: [],
     setUsers: () => {},
+    user: {},
+    setUser: () => {},
 });

@@ -9,6 +9,7 @@ function App() {
     const [currentForm, setCurrentForm] = useState('login');
     const [users, setUsers] = useState([]);
     const [userInfo, setUserInfo] = useState({});
+    const [user, setUser] = useState({});
     // ! getting users from server
     useEffect(() => {
         const fetchData = async () => {
@@ -31,6 +32,8 @@ function App() {
                 setUserInfo,
                 setUsers,
                 users,
+                user,
+                setUser,
             }}
         >
             {router}
