@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { LoginSchema } from '../validation/userSchema';
 import { AiOutlineEyeInvisible, AiOutlineEye } from 'react-icons/ai';
+import { LoginToast } from './';
 const LoginForm = () => {
     const navigate = useNavigate();
     // ! get states from context
@@ -19,7 +20,7 @@ const LoginForm = () => {
     // ! redirecting user if its already logged in
     useEffect(() => {
         if (localStorage.getItem('userId')) {
-            navigate('/main');
+            navigate('/');
         }
     }, []);
     // ! getting user info
@@ -34,9 +35,13 @@ const LoginForm = () => {
             if (requestedUser) {
                 if (requestedUser.password === values.password) {
                     localStorage.setItem('userId', requestedUser.id);
-                    navigate('/main');
+                    navigate('/');
                     setUser(requestedUser);
                     setErrMessage('');
+                    LoginToast.fire({
+                        icon: 'success',
+                        title: 'Signed in successfully',
+                    });
                 } else {
                     setErrMessage('wrong pass or username');
                 }
@@ -68,7 +73,7 @@ const LoginForm = () => {
                 <Form
                     className={`flex flex-col space-y-2 absolute w-[19rem]
                 duration-300
-                ${currentForm === 'login' ? 'left-full' : 'left-9'}
+                ${currentForm === 'login' ? 'right-9' : 'right-full'}
                 `}
                 >
                     <Field
@@ -108,7 +113,7 @@ const LoginForm = () => {
                     )}
                     <button
                         type='submit'
-                        className='text-[#333] text-lg rounded-3xl p-2 bg-gradient-to-r from-[#f3446a] to-[#ff6464]'
+                        className='text-white text-lg rounded-3xl p-2 bg-gradient-to-r from-[#f3446a] to-[#ff6464]'
                     >
                         Login
                     </button>

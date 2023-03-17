@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { RegisterSchema } from '../validation/userSchema';
 import { AiOutlineEyeInvisible, AiOutlineEye } from 'react-icons/ai';
-
+import { LoginToast } from './';
 const RegisterForm = () => {
     const navigate = useNavigate();
     // ! get states from context
@@ -21,7 +21,7 @@ const RegisterForm = () => {
     // ! redirecting user if its already logged in
     useEffect(() => {
         if (localStorage.getItem('userId')) {
-            navigate('/main');
+            navigate('/');
         }
     }, []);
 
@@ -44,10 +44,15 @@ const RegisterForm = () => {
             } else if (isEmailTaken) {
                 setErrMessage('this email is connected to another account');
             } else {
+                console.log('first');
+                LoginToast.fire({
+                    icon: 'success',
+                    title: 'Signed in successfully',
+                });
                 const { data } = await registerUser(values);
                 setUser(data);
                 localStorage.setItem('userId', data.id);
-                navigate('/main');
+                navigate('/');
                 setErrMessage('');
             }
         } catch (err) {
@@ -75,7 +80,7 @@ const RegisterForm = () => {
                 <Form
                     className={`flex flex-col space-y-2 absolute w-[19rem]
                 duration-300
-                ${currentForm === 'register' ? 'right-full' : 'right-9'}
+                ${currentForm === 'register' ? 'left-9' : 'left-full'}
                 `}
                 >
                     <Field
@@ -122,7 +127,7 @@ const RegisterForm = () => {
                     )}
                     <button
                         type='submit'
-                        className='text-[#333] text-lg rounded-3xl p-2 bg-gradient-to-r from-[#f3446a] to-[#ff6464]'
+                        className='text-white text-lg rounded-3xl p-2 bg-gradient-to-r from-[#f3446a] to-[#ff6464]'
                     >
                         Register
                     </button>
