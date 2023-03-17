@@ -4,25 +4,19 @@ import { useNavigate } from 'react-router-dom';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { LoginSchema } from '../validation/userSchema';
 import { AiOutlineEyeInvisible, AiOutlineEye } from 'react-icons/ai';
-import { LoginToast } from './';
+// ! sweet alert toast
+import { toast } from './';
 const LoginForm = () => {
     const navigate = useNavigate();
     // ! get states from context
-    const {
-        currentForm,
-        users,
-        setUser,
-        errMessage,
-        setErrMessage,
-        setShowPassword,
-        showPassword,
-    } = useContext(mainContext);
+    const { currentForm, users, setUser, setShowPassword, showPassword } =
+        useContext(mainContext);
     // ! redirecting user if its already logged in
     useEffect(() => {
         if (localStorage.getItem('userId')) {
             navigate('/');
         }
-    }, []);
+    });
     // ! getting user info
     const getUser = (values) => {
         try {
@@ -34,19 +28,30 @@ const LoginForm = () => {
             )[0];
             if (requestedUser) {
                 if (requestedUser.password === values.password) {
-                    localStorage.setItem('userId', requestedUser.id);
-                    navigate('/');
-                    setUser(requestedUser);
-                    setErrMessage('');
-                    LoginToast.fire({
+                    // ! logged in successfully --> fire alert
+                    toast.fire({
                         icon: 'success',
                         title: 'Signed in successfully',
                     });
+                    // ! store user id in localStorage
+                    localStorage.setItem('userId', requestedUser.id);
+                    // ! navigate user to main root
+                    navigate('/');
+                    // ! setUser data in user state
+                    setUser(requestedUser);
                 } else {
-                    setErrMessage('wrong pass or username');
+                    // ! user pass was wrong --> fire alert
+                    toast.fire({
+                        icon: 'error',
+                        title: 'wrong pass or username',
+                    });
                 }
             } else {
-                setErrMessage('wrong pass or username');
+                // ! username was wrong --> fire alert
+                toast.fire({
+                    icon: 'error',
+                    title: 'wrong pass or username',
+                });
             }
         } catch (err) {
             console.log(err);
@@ -108,9 +113,6 @@ const LoginForm = () => {
                     <span className='text-red-500'>
                         <ErrorMessage name='password' />
                     </span>
-                    {errMessage && (
-                        <span className='text-red-500'>{errMessage}</span>
-                    )}
                     <button
                         type='submit'
                         className='text-white text-lg rounded-3xl p-2 bg-gradient-to-r from-[#f3446a] to-[#ff6464]'

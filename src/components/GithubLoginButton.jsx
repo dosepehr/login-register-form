@@ -8,18 +8,19 @@ import {
     registerUser,
 } from '../services/fetchData';
 import { AiFillGithub } from 'react-icons/ai';
-import { LoginToast } from './';
+// ! sweet alert toast
+import { toast } from './';
 
 const GithubLoginButton = () => {
     const { setUser } = useContext(mainContext);
     const location = useLocation();
     const navigate = useNavigate();
     useEffect(() => {
-        // ! fetching codeParam from location
+        // ! fetching codeParam from location and check its existence
         const codeParam = location.search.slice(6);
         if (codeParam && localStorage.getItem('accessToken') === null) {
             const fetchAccessToken = async () => {
-                // ! getting access code based on codeParam
+                // ! getting access code based on codeParam and check its existence
                 const { data: accessToken } = await getAccessToken(codeParam);
                 if (accessToken.access_token) {
                     localStorage.setItem(
@@ -41,8 +42,9 @@ const GithubLoginButton = () => {
                         );
                         // ! navigating to main root
                         navigate('/');
+                        // ! store user id in localStorage
                         localStorage.setItem('userId', githubUser.id);
-                        LoginToast.fire({
+                        toast.fire({
                             icon: 'success',
                             title: 'Signed in successfully',
                         });
@@ -51,7 +53,7 @@ const GithubLoginButton = () => {
             };
             fetchAccessToken();
         }
-    }, []);
+    });
     // ! send request to authorizing from github
     const loginWithGithub = () => {
         window.location.assign(

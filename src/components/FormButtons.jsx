@@ -1,14 +1,18 @@
 import { useContext } from 'react';
 import { mainContext } from '../context';
-import GithubLoginButton from './GithubLoginButton';
 const FormButtons = () => {
-    const { currentForm, setCurrentForm, setErrMessage } =
+    // ! getting states from context
+    const { currentForm, setCurrentForm, setErrMessage, setShowPassword } =
         useContext(mainContext);
+        // ! change form
     const changeForm = () => {
         currentForm === 'login'
             ? setCurrentForm('register')
             : setCurrentForm('login');
+        // ! clear errors
         setErrMessage('');
+        // ! hide password of previous form
+        setShowPassword(false);
     };
     return (
         <>
@@ -19,8 +23,8 @@ const FormButtons = () => {
                 <div className='relative'>
                     <div
                         className={`bg-gradient-to-r from-[#f3446a] to-[#ff6464] h-full absolute rounded-full duration-300 w-40 top-0 
-                        
                         ${
+                            // ! change position of selected from button
                             currentForm === 'login'
                                 ? 'right-[110px]'
                                 : '-right-10'
@@ -28,14 +32,13 @@ const FormButtons = () => {
                         `}
                     ></div>
                     <button className='bg-transparent border-none py-2 px-9 cursor-pointer outline-none relative duration-300'>
-                        register
+                        login
                     </button>
                     <button className='bg-transparent border-none py-2 px-9 cursor-pointer outline-none relative duration-300'>
-                        login
+                        register
                     </button>
                 </div>
             </div>
-            <GithubLoginButton />
         </>
     );
 };

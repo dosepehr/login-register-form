@@ -18,11 +18,13 @@
         "react-icons": "^4.8.0",
         "react-router-dom": "^6.9.0",
         "react-scripts": "5.0.1",
+        "sweetalert2": "^11.7.3",
+        "sweetalert2-react-content": "^5.0.7",
         "web-vitals": "^2.1.4",
         "yup": "^1.0.2"
     },
     "scripts": {
-        "start": "concurrently \"react-scripts start\" \"cd server && npm start\" \"node githubLogin.js\" ",
+        "start": "concurrently \"react-scripts start\" \"cd server && npm start\" \"cd server && node githubServer.js\" ",
         "build": "react-scripts build",
         "test": "react-scripts test",
         "eject": "react-scripts eject"
