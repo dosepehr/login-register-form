@@ -1,12 +1,18 @@
 import { useContext, useEffect } from 'react';
 import { mainContext } from '../context';
+import { useNavigate } from 'react-router-dom';
 const MainPage = () => {
+    const navigate = useNavigate();
     const { user, setUser, users } = useContext(mainContext);
     useEffect(() => {
-        const loggedInUser = users.filter(
-            (user) => user.id === +localStorage.getItem('userId')
-        );
-        loggedInUser.length > 0 && setUser(loggedInUser[0]);
+        if (localStorage.getItem('userId')) {
+            const loggedInUser = users.filter(
+                (user) => user.id === +localStorage.getItem('userId')
+            );
+            loggedInUser.length > 0 && setUser(loggedInUser[0]);
+        } else {
+            navigate('/login-register');
+        }
     });
     const logOutHandler = () => {
         setUser({});
@@ -14,7 +20,7 @@ const MainPage = () => {
     };
     return (
         <div>
-            {Object.keys(user).length > 0 ? (
+            {Object.keys(user).length > 0 && (
                 <>
                     <p>
                         user :
@@ -31,10 +37,6 @@ const MainPage = () => {
                         logOut
                     </button>
                 </>
-            ) : (
-                <h1 className='bg-purple-500 text-center'>
-                    you are logged out !
-                </h1>
             )}
         </div>
     );
