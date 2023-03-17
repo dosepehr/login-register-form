@@ -1,6 +1,10 @@
 import { useContext, useEffect } from 'react';
 import { mainContext } from '../context';
 import { useNavigate } from 'react-router-dom';
+// ! sweet alert
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
+
 const MainPage = () => {
     const navigate = useNavigate();
     const { user, setUser, users } = useContext(mainContext);
@@ -14,11 +18,29 @@ const MainPage = () => {
             navigate('/login-register');
         }
     });
+
     const logOutHandler = () => {
-        setUser({});
-        localStorage.removeItem('userId');
-        localStorage.removeItem('accessToken');
+        // ! showing sweet alert
+        const MySwal = withReactContent(Swal);
+        MySwal.fire({
+            title: 'Do you want to logout?',
+            showDenyButton: true,
+            showCancelButton: false,
+            confirmButtonText: 'yes',
+            denyButtonText: `no`,
+            icon:'question'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                setUser({});
+                localStorage.removeItem('userId');
+                localStorage.removeItem('accessToken');
+                MySwal.fire('you logged out', '', 'warning');
+            } else if (result.isDenied) {
+                MySwal.fire('its good to have you with us :))', '', 'success');
+            }
+        });
     };
+
     return (
         <div>
             {Object.keys(user).length > 0 && (
