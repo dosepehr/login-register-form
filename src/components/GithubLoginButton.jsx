@@ -48,7 +48,9 @@ const GithubLoginButton = () => {
     };
     return (
         <>
-            <button onClick={loginWithGithub}>login with github</button>
+            <button className='bg-black text-white text-center w-full mb-4 py-2 rounded-3xl' onClick={loginWithGithub}>
+                login with github
+            </button>
         </>
     );
 };

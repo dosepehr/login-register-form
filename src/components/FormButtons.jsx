@@ -13,7 +13,7 @@ const FormButtons = () => {
     return (
         <>
             <div
-                className='flex my-9 items-center justify-center rounded-3xl shadow-lg shadow-[#ff4d4d4d]'
+                className='flex my-6 items-center justify-center rounded-3xl shadow-lg shadow-[#ff4d4d4d]'
                 onClick={changeForm}
             >
                 <div className='relative'>
