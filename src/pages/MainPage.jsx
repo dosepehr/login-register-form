@@ -17,6 +17,7 @@ const MainPage = () => {
     const logOutHandler = () => {
         setUser({});
         localStorage.removeItem('userId');
+        localStorage.removeItem('accessToken');
     };
     return (
         <div>
