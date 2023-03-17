@@ -9,4 +9,6 @@ export const mainContext = createContext({
     setUser: () => {},
     errMessage: '',
     setErrMessage: () => {},
+    showPassword: false,
+    setShowPassword: () => {},
 });

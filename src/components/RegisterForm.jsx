@@ -4,10 +4,21 @@ import { registerUser } from '../services/fetchData';
 import { useNavigate } from 'react-router-dom';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { RegisterSchema } from '../validation/userSchema';
+import { AiOutlineEyeInvisible, AiOutlineEye } from 'react-icons/ai';
+
 const RegisterForm = () => {
     const navigate = useNavigate();
-    const { currentForm, setUser, errMessage, setErrMessage, users } =
-        useContext(mainContext);
+    // ! get states from context
+    const {
+        currentForm,
+        setUser,
+        errMessage,
+        setErrMessage,
+        users,
+        showPassword,
+        setShowPassword,
+    } = useContext(mainContext);
+    // ! redirecting user if its already logged in
     useEffect(() => {
         if (localStorage.getItem('userId')) {
             navigate('/main');
@@ -43,7 +54,10 @@ const RegisterForm = () => {
             console.log(err);
         }
     };
-
+    // ! handle showing password or not
+    const setSHowPasswordHandler = () => {
+        setShowPassword((prev) => !prev);
+    };
     return (
         <>
             {/* if user requested for register form ,it will slide from right */}
@@ -82,12 +96,24 @@ const RegisterForm = () => {
                     <span className='text-red-500'>
                         <ErrorMessage name='email' />
                     </span>
-                    <Field
-                        name='password'
-                        type='password'
-                        placeholder='password'
-                        className='p-2 border border-[#777] rounded-3xl'
-                    />
+                    <div className='relative'>
+                        <Field
+                            name='password'
+                            type={showPassword ? 'text' : 'password'}
+                            placeholder='password'
+                            className='p-2 border border-[#777] rounded-3xl w-full'
+                        />
+                        <span
+                            onClick={setSHowPasswordHandler}
+                            className='absolute right-2 top-2 bottom-0 text-2xl cursor-pointer text-[#777]'
+                        >
+                            {showPassword ? (
+                                <AiOutlineEye />
+                            ) : (
+                                <AiOutlineEyeInvisible />
+                            )}
+                        </span>
+                    </div>
                     <span className='text-red-500'>
                         <ErrorMessage name='password' />
                     </span>
