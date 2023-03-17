@@ -10,8 +10,14 @@ import { toast } from './';
 const RegisterForm = () => {
     const navigate = useNavigate();
     // ! get states from context
-    const { currentForm, setUser, users, showPassword, setShowPassword } =
-        useContext(mainContext);
+    const {
+        currentForm,
+        setUser,
+        users,
+        showPassword,
+        setShowPassword,
+        setUsers,
+    } = useContext(mainContext);
     // ! redirecting user if its already logged in
     useEffect(() => {
         if (localStorage.getItem('userId')) {
@@ -51,13 +57,14 @@ const RegisterForm = () => {
                 });
                 // ! fetching user data from json-server
                 const { data } = await registerUser(values);
+                // ! update users List
+                setUsers([...users, data]);
                 // ! setUser data in user state
                 setUser(data);
                 // ! store user id in localStorage
                 localStorage.setItem('userId', data.id);
                 // ! navigate user to main root
                 navigate('/');
-                // ! clear err messages
             }
         } catch (err) {
             console.log(err);
