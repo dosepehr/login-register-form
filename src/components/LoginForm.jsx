@@ -1,10 +1,15 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { mainContext } from '../context';
 import { useNavigate } from 'react-router-dom';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { LoginSchema } from '../validation/userSchema';
 const LoginForm = () => {
     const navigate = useNavigate();
+    useEffect(() => {
+        if (localStorage.getItem('userId')) {
+            navigate('/main');
+        }
+    }, []);
     const { currentForm, users, setUser, errMessage, setErrMessage } =
         useContext(mainContext);
     // ! getting user info

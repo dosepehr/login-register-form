@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { mainContext } from '../context';
 import { registerUser } from '../services/fetchData';
 import { useNavigate } from 'react-router-dom';
@@ -8,6 +8,11 @@ const RegisterForm = () => {
     const navigate = useNavigate();
     const { currentForm, setUser, errMessage, setErrMessage, users } =
         useContext(mainContext);
+    useEffect(() => {
+        if (localStorage.getItem('userId')) {
+            navigate('/main');
+        }
+    }, []);
 
     // ! getting new user info
     const createUser = async (values) => {
