@@ -8,7 +8,7 @@ const LoginForm = () => {
     const { currentForm, users, setUser, errMessage, setErrMessage } =
         useContext(mainContext);
     // ! getting user info
-    const getUser = async (values) => {
+    const getUser = (values) => {
         try {
             // ! getting requested user and check its username and password
             const requestedUser = users.filter(
@@ -18,10 +18,9 @@ const LoginForm = () => {
             )[0];
             if (requestedUser) {
                 if (requestedUser.password === values.password) {
+                    localStorage.setItem('userId', requestedUser.id);
                     navigate('/main');
                     setUser(requestedUser);
-                    localStorage.setItem('userId', requestedUser.id);
-
                     setErrMessage('');
                 } else {
                     setErrMessage('wrong pass or username');

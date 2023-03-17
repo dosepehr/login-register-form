@@ -28,8 +28,9 @@ const RegisterForm = () => {
             } else if (isEmailTaken) {
                 setErrMessage('this email is connected to another account');
             } else {
-                await registerUser(values);
-                setUser(values);
+                const { data } = await registerUser(values);
+                setUser(data);
+                localStorage.setItem('userId', data.id);
                 navigate('/main');
                 setErrMessage('');
             }
