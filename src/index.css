@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .app {
-    background: linear-gradient(#00000080, #00000080), url('../public/assets/images/1.jpg');
+    background: linear-gradient(#00000080, #00000080), url('../public/assets/images/bg.jpg');
     background-size: cover;
     background-position: center;
 }

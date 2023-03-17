@@ -1,7 +1,5 @@
 const express = require('express');
 const cors = require('cors');
-const fetch = (...args) =>
-    import('node-fetch').then(({ default: fetch }) => fetch(...args));
 const bodyParser = require('body-parser');
 
 const CLIENT_ID = 'e197d9e5999efbb20ba4';
@@ -10,7 +8,7 @@ const SECRET_ID = 'b144845a0a725ea42e753ef08b65e945b8e1393f';
 const server = express();
 server.use(cors());
 server.use(bodyParser.json());
-
+// ! getting accessToken
 server.get('/getAccessToken', async function (req, res) {
     const params = `?client_id=${CLIENT_ID}&client_secret=${SECRET_ID}&code=${req.query.code}`;
     const response = await fetch(
@@ -24,9 +22,8 @@ server.get('/getAccessToken', async function (req, res) {
     );
     const data = await response.json();
     res.send(data);
-
 });
-
+// ! getting user data based on accessToken
 server.get('/getUserData', async function (req, res) {
     req.get('Authorization');
     const response = await fetch('https://api.github.com/user', {

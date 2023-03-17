@@ -5,25 +5,19 @@ import { useNavigate } from 'react-router-dom';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { RegisterSchema } from '../validation/userSchema';
 import { AiOutlineEyeInvisible, AiOutlineEye } from 'react-icons/ai';
-import { LoginToast } from './';
+// ! sweet alert toast
+import { toast } from './';
 const RegisterForm = () => {
     const navigate = useNavigate();
     // ! get states from context
-    const {
-        currentForm,
-        setUser,
-        errMessage,
-        setErrMessage,
-        users,
-        showPassword,
-        setShowPassword,
-    } = useContext(mainContext);
+    const { currentForm, setUser, users, showPassword, setShowPassword } =
+        useContext(mainContext);
     // ! redirecting user if its already logged in
     useEffect(() => {
         if (localStorage.getItem('userId')) {
             navigate('/');
         }
-    }, []);
+    });
 
     // ! getting new user info
     const createUser = async (values) => {
@@ -38,22 +32,32 @@ const RegisterForm = () => {
                     user.email.toLowerCase() === values.email.toLowerCase()
             );
             if (isUsernameTaken) {
-                setErrMessage(
-                    'this username is taken,please choose another name'
-                );
+                // ! user name was taken --> fire alert
+                toast.fire({
+                    icon: 'error',
+                    title: 'this username is taken,please choose another name',
+                });
             } else if (isEmailTaken) {
-                setErrMessage('this email is connected to another account');
+                // ! user email was taken --> fire alert
+                toast.fire({
+                    icon: 'error',
+                    title: 'this email is connected to another account',
+                });
             } else {
-                console.log('first');
-                LoginToast.fire({
+                // ! user registered successfully --> fire alert
+                toast.fire({
                     icon: 'success',
                     title: 'Signed in successfully',
                 });
+                // ! fetching user data from json-server
                 const { data } = await registerUser(values);
+                // ! setUser data in user state
                 setUser(data);
+                // ! store user id in localStorage
                 localStorage.setItem('userId', data.id);
+                // ! navigate user to main root
                 navigate('/');
-                setErrMessage('');
+                // ! clear err messages
             }
         } catch (err) {
             console.log(err);
@@ -122,9 +126,6 @@ const RegisterForm = () => {
                     <span className='text-red-500'>
                         <ErrorMessage name='password' />
                     </span>
-                    {errMessage && (
-                        <span className='text-red-500'>{errMessage}</span>
-                    )}
                     <button
                         type='submit'
                         className='text-white text-lg rounded-3xl p-2 bg-gradient-to-r from-[#f3446a] to-[#ff6464]'
