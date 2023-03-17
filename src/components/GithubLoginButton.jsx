@@ -5,6 +5,7 @@ import {
     CLIENT_ID,
     getUserDataFromGithub,
     getAccessToken,
+    registerUser,
 } from '../services/fetchData';
 
 const GithubLoginButton = () => {
@@ -23,12 +24,16 @@ const GithubLoginButton = () => {
                     );
                     const { data, status } = await getUserDataFromGithub();
                     if (status === 200) {
-                        console.log(data);
-                        setUser({
+                        const newUserData = {
                             username: data.login,
                             email: data.email,
-                        });
+                        };
+                        setUser(newUserData);
+                        const { data: githubUser } = await registerUser(
+                            newUserData
+                        );
                         navigate('/main');
+                        localStorage.setItem('userId', githubUser.id);
                     }
                 }
             };
