@@ -1,22 +1,28 @@
 {
-    "users": [
-        {
-            "id": 1,
-            "username": "John",
-            "password": "123456",
-            "email": "John@gmail.com"
-        },
-        {
-            "id": 2,
-            "username": "Peter",
-            "password": "pet-123",
-            "email": "Peter@gmail.com"
-        },
-        {
-            "id": 3,
-            "username": "Amy",
-            "password": "AmyHerself",
-            "email": "Amy@gmail.com"
-        }
-    ]
+  "users": [
+    {
+      "id": 1,
+      "username": "John",
+      "password": "123456",
+      "email": "John@gmail.com"
+    },
+    {
+      "id": 2,
+      "username": "Peter",
+      "password": "pet-123",
+      "email": "Peter@gmail.com"
+    },
+    {
+      "id": 3,
+      "username": "Amy",
+      "password": "AmyHerself",
+      "email": "Amy@gmail.com"
+    },
+    {
+      "username": "sepehr",
+      "email": "jfjfjfj@gmail.com",
+      "password": "hellosepehr",
+      "id": 4
+    }
+  ]
 }

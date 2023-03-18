@@ -2,15 +2,13 @@ import { useContext } from 'react';
 import { mainContext } from '../context';
 const FormButtons = () => {
     // ! getting states from context
-    const { currentForm, setCurrentForm, setErrMessage, setShowPassword } =
+    const { currentForm, setCurrentForm, setShowPassword } =
         useContext(mainContext);
         // ! change form
     const changeForm = () => {
         currentForm === 'login'
             ? setCurrentForm('register')
             : setCurrentForm('login');
-        // ! clear errors
-        setErrMessage('');
         // ! hide password of previous form
         setShowPassword(false);
     };
