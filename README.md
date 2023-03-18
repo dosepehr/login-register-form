@@ -7,7 +7,9 @@
 
 # github auth server
 
-github client_id and secret_id must be changes if the url of application changed
+github _**client_id_** and _**secret_id**_ must be changes if the url of application changed
+_**client_id_** must update on `.env` & `server/githubServer.js` files
+_**secret_id** must update on `server/githubServer.js` file
 
 you can change them from [Here](https://github.com/settings/developers).
 
