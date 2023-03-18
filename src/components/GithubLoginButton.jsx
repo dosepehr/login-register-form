@@ -30,20 +30,14 @@ const GithubLoginButton = () => {
                     // ! getting user data from ginthub server
                     const { data, status } = await getUserDataFromGithub();
                     if (status === 200) {
-                        // ! making new user information
-                        const newUserData = {
+                        // ! check if the Github user exists in your system
+                        const { data: githubUser } = await registerUser({
                             username: data.login,
                             email: data.email,
-                        };
-                        setUser(newUserData);
-                        // ! store user data in json-server
-                        const { data: githubUser } = await registerUser(
-                            newUserData
-                        );
-                        // ! navigating to main root
-                        navigate('/');
-                        // ! store user id in localStorage
+                        });
+                        setUser(githubUser);
                         localStorage.setItem('userId', githubUser.id);
+                        navigate('/');
                         toast.fire({
                             icon: 'success',
                             title: 'Signed in successfully',
