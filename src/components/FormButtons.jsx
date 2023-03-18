@@ -4,7 +4,7 @@ const FormButtons = () => {
     // ! getting states from context
     const { currentForm, setCurrentForm, setShowPassword } =
         useContext(mainContext);
-        // ! change form
+    // ! change form
     const changeForm = () => {
         currentForm === 'login'
             ? setCurrentForm('register')

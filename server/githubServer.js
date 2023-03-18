@@ -1,7 +1,6 @@
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-
 const CLIENT_ID = 'e197d9e5999efbb20ba4';
 const SECRET_ID = 'b144845a0a725ea42e753ef08b65e945b8e1393f';
 

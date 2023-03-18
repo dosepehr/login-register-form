@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // ! github client Id
-export const CLIENT_ID = 'e197d9e5999efbb20ba4';
+export const CLIENT_ID = process.env.REACT_APP_CLIENT_ID;
 // ! json-server url
 const BASE_URL = 'http://localhost:9000';
 // ! github server url
