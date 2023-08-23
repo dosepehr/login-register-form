@@ -3,19 +3,19 @@ import axios from 'axios';
 // ! github client Id
 export const CLIENT_ID = process.env.REACT_APP_CLIENT_ID;
 // ! json-server url
-const BASE_URL = 'http://localhost:9000';
+const BASE_URL = 'https://login-register-server.iran.liara.run';
 // ! github server url
 const GITHUB_SERVER_URL = 'http://localhost:4000';
 
 // ! @desc get users list from server
-// ! @route http://localhost:9000/users
+// ! @route https://login-register-server.iran.liara.run/users
 export const getUsers = () => {
     const url = `${BASE_URL}/users`;
     return axios.get(url);
 };
 
 // ! @desc post new user data to server
-// ! @route http://localhost:9000/users
+// ! @route https://login-register-server.iran.liara.run/users
 export const registerUser = (newUserData) => {
     const url = `${BASE_URL}/users`;
     return axios.post(url, newUserData);
